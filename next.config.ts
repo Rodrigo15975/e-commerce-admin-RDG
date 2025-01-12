@@ -13,6 +13,8 @@ const nextConfig: NextConfig = {
     ],
     unoptimized: true,
   },
+  outputFileTracingRoot: './',
+  telemetry: false,
 }
 
 export default nextConfig
