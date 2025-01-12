@@ -1,5 +1,5 @@
-import { useMethods } from "@/adapters/methods"
-import { PathServices } from "@/pathServices/pathServices"
+import { useMethods } from '@/adapters/methods'
+import { PathServices } from '@/pathServices/pathServices'
 
 export const auth = async (data: Login) =>
   await useMethods.POST<HttpResponse & Cookies, Login>(
@@ -15,7 +15,7 @@ export const verifyToken = async (token: string | undefined) => {
 
     return data
   } catch (error) {
-    return { message: null, statusCode: null, success: false }
+    return { message: null, statusCode: null, success: false, error }
   }
 }
 
