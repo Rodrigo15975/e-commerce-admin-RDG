@@ -13,8 +13,13 @@ const nextConfig: NextConfig = {
     ],
     unoptimized: true,
   },
-  outputFileTracingRoot: './',
-  telemetry: false,
+
+  // optimizeCss: true,
+
+  // outputFileTracingRoot: 'src',
+  // telemetry: false,
+  // appDir: true,
+  // poweredByHeader: false,
 }
 
 export default nextConfig

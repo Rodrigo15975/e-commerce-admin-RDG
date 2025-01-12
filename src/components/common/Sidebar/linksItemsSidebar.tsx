@@ -1,4 +1,3 @@
-'use client'
 import { usePathname } from 'next/navigation'
 import { Menu, MenuItem, MenuItemStyles } from 'react-pro-sidebar'
 import { linksBusiness, linksGeneral } from './linkSidebar'

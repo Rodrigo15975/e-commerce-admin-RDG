@@ -1,3 +1,5 @@
+import React from "react"
+
 const Loading = () => {
   return (
     <div className="absolute inset-0 bg-gradient-to-r flex items-center justify-center from-blue-500 to-blue-400 z-[99999] text-white text-5xl">

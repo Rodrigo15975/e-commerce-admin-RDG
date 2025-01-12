@@ -1,6 +1,5 @@
 'use client'
 import { Button } from '@/components/ui/button'
-
 import {
   Form,
   FormControl,
@@ -153,8 +152,6 @@ const Login = () => {
               </form>
             </Form>
           </div>
-
-          <div className="flex items-center justify-center mt-8"></div>
         </div>
       </div>
     </>
