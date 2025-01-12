@@ -1,8 +1,8 @@
 'use client'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Badge } from '@/components/ui/badge'
+// import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { useGetProfile } from '@/modules/users/services'
+// import { useGetProfile } from '@/modules/users/services'
 import Image from 'next/image'
 import { confirmPopup } from 'primereact/confirmpopup'
 import { Sidebar as SidebarMobile } from 'primereact/sidebar'
@@ -17,16 +17,12 @@ import ButtonLogout from './buttonLogout'
 const Header: React.FC = () => {
   const [visible, setVisible] = useState<boolean>(false)
   const openSidebarMobile = () => setVisible(!visible)
-  const { data } = useGetProfile()
+  // const { data } = useGetProfile()
 
   const confirm1 = (event: SyntheticEvent) => {
     confirmPopup({
       target: event.currentTarget as HTMLElement,
-      message: (
-        <>
-          <Badge>Username:{data?.name}</Badge>
-        </>
-      ),
+      message: <>{/* <Badge>Username:{data?.name}</Badge> */}</>,
       icon: 'pi pi-exclamation-triangle',
       defaultFocus: 'accept',
       footer: ({ reject }) => <ButtonLogout reject={reject} />,
