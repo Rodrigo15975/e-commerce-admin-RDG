@@ -1,3 +1,4 @@
+'use client'
 import { Panel } from 'primereact/panel'
 import React from 'react'
 import { ButtonOriginUI } from '@/components/ui/button-origin-ui'
