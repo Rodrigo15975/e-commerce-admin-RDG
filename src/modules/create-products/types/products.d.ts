@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-empty-interface */
+
 /**
  * @Product_creating
  */
-interface Product {
+type Product = {
   id?: number
   product: string
   productVariant: ProductVariant[]
@@ -17,23 +19,22 @@ interface Product {
   productInventory: ProductInventory
 }
 
-interface ProductVariant {
+type ProductVariant = {
   color: string
   image: null | File
   url?: string
 }
 
-interface ProductInventory {
+type ProductInventory = {
   minStock: number
   stock: boolean
 }
 
-interface InitialValuesProduct {
+type InitialValuesProduct = {
   products: Product[]
 }
 
-interface FindAllProducts
-  extends Omit<Product, 'categorie' | 'productVariant'> {
+type FindAllProducts = Omit<Product, 'categorie' | 'productVariant'> & {
   productVariant: {
     id: number
     key_url: string
@@ -48,4 +49,4 @@ interface FindAllProducts
   }
 }
 
-interface CreateProduct extends FormData {}
+type CreateProduct = FormData

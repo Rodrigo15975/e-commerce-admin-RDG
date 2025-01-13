@@ -1,4 +1,6 @@
-interface Coupon {
+/* eslint-disable @typescript-eslint/no-empty-interface */
+
+type Coupon = {
   id?: number
   code: string
   discount: number
@@ -7,17 +9,18 @@ interface Coupon {
   espiryDate: string
   createdAt?: string
   updatedAt?: string
+  _?: never
 }
 
-interface FindAllCoupons extends Coupon {
+type FindAllCoupons = Coupon & {
   products: {
     id: number
     product: string
   }
 }
 
-interface CreateCoupon extends Coupon {
+type CreateCoupon = Coupon & {
   product: number | undefined | string | null
 }
 
-interface UpdateCoupon extends CreateCoupon {}
+type UpdateCoupon = CreateCoupon
