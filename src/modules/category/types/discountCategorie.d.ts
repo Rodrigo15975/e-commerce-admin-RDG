@@ -1,4 +1,6 @@
-interface CreateDiscountCategory {
+/* eslint-disable @typescript-eslint/no-empty-interface */
+
+type CreateDiscountCategory = {
   discount: number | string
   categoryId: string | number
   end_date: string
@@ -7,4 +9,4 @@ interface CreateDiscountCategory {
   id?: number
 }
 
-interface UpdateDiscountCategory extends CreateDiscountCategory {}
+type UpdateDiscountCategory = CreateDiscountCategory

@@ -1,4 +1,5 @@
-interface Categories {
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+type Categories = {
   label: ReactNode
   id: number
   category: string
@@ -11,10 +12,10 @@ interface Categories {
     is_active: true
   }[]
 }
-
-interface CreateCategorie {
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+type CreateCategorie = {
   category: string
   id?: number | undefined
 }
-
-interface UpdateCategorie extends CreateCategorie {}
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+type UpdateCategorie = CreateCategorie
