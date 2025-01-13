@@ -49,4 +49,4 @@ interface FindAllProducts
   }
 }
 
-type CreateProducts = FormData
+type CreateProduct = FormData
