@@ -1,8 +1,5 @@
 import OrdersPage from '@/modules/orders/pages/ordersPage'
-import type { NextPage } from 'next'
 
-const Page: NextPage = () => {
-  return <OrdersPage />
-}
+const Page = () => <OrdersPage />
 
 export default Page

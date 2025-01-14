@@ -1,9 +1,6 @@
-import { DashboardPage } from "@/modules/dashboard/pages/DashboardPage"
-import { NextPage } from "next"
+import { DashboardPage } from '@/modules/dashboard/pages/DashboardPage'
 
-import React from "react"
-
-const Dashboard: NextPage  = () => {
+const Dashboard = () => {
   return <DashboardPage />
 }
 

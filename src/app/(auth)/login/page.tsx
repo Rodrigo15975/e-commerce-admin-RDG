@@ -1,7 +1,6 @@
 import LoginPage from '@/modules/login/pages/loginPage'
-import { NextPage } from 'next'
 
-const Login: NextPage = () => {
+const Login = () => {
   return <LoginPage />
 }
 

@@ -1,7 +1,6 @@
 import ProductsPage from '@/modules/products/pages/productsPage'
-import { NextPage } from 'next'
 
-const Page: NextPage  = () => {
+const Page = () => {
   return <ProductsPage />
 }
 
