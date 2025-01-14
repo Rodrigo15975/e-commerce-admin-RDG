@@ -1,5 +1,6 @@
 // 'use client'
 
+import { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 
 // Cargar el componente dinámicamente
@@ -8,7 +9,7 @@ const CreateProductsPage = dynamic(
   { ssr: true }
 )
 
-const CreateProducts = () => {
+const CreateProducts: NextPage  = () => {
   return <CreateProductsPage />
 }
 
