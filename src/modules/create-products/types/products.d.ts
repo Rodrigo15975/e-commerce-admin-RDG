@@ -47,6 +47,7 @@ interface FindAllProducts
     createdAt?: string
     updatedAt?: string
   }
+  total_sold?: number | null
 }
 
 type CreateProduct = FormData

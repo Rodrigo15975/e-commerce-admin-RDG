@@ -39,7 +39,7 @@ export const useLogout = () => {
     async onSuccess(data) {
       if (data.success) {
         setCookie('auth', data.auth)
-        router.push('/', {
+        router.push('/login', {
           scroll: false,
         })
         await queryClient.cancelQueries()

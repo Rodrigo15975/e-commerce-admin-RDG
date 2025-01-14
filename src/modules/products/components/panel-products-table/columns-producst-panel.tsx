@@ -119,6 +119,7 @@ const ColumnsProductsPanel = () => {
       field: 'total_sold',
       header: 'Total sold',
       sortable: true,
+      body: (data: FindAllProducts) => <>{data.total_sold ?? 0}</>,
     },
     {
       field: 'description',

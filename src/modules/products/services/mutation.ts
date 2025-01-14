@@ -17,9 +17,9 @@ export const useDeleteProduct = () => {
     mutationFn: deleteProduct,
 
     async onMutate(id) {
-      await queryClient.cancelQueries({
-        queryKey: ['products'],
-      })
+      // await queryClient.cancelQueries({
+      //   queryKey: ['products'],
+      // })
       const previousProducts = queryClient.getQueryData<FindAllProducts[]>([
         'products',
       ])
@@ -36,15 +36,15 @@ export const useDeleteProduct = () => {
       }
     },
     async onSettled() {
-      await queryClient.invalidateQueries({
-        queryKey: ['products'],
-      })
+      // await queryClient.invalidateQueries({
+      //   queryKey: ['products'],
+      // })
     },
 
     onSuccess: async (data) => {
       const { message } = data
 
-      await queryClient.invalidateQueries({
+      await queryClient.refetchQueries({
         queryKey: ['products'],
       })
       toast({
@@ -74,9 +74,8 @@ export const useCreateArchiveProductVariant = () => {
     mutationKey: ['create-archive-productVariant'],
     mutationFn: createArchiveProductVariant,
     onSuccess: async (data) => {
-      await queryClient.invalidateQueries({
+      await queryClient.refetchQueries({
         queryKey: ['products'],
-        exact: true,
       })
       toast({
         title: 'Created archive',
@@ -104,9 +103,8 @@ export const useCreateSize = () => {
     mutationKey: ['create-product-size'],
     mutationFn: createSize,
     onSuccess: async (data) => {
-      await queryClient.invalidateQueries({
+      await queryClient.refetchQueries({
         queryKey: ['products'],
-        exact: true,
       })
       toast({
         title: 'Created size',
@@ -135,9 +133,8 @@ export const useDeleteArchive = () => {
     mutationFn: deleteArhive,
 
     onSuccess: async (data) => {
-      await queryClient.invalidateQueries({
+      await queryClient.refetchQueries({
         queryKey: ['products'],
-        exact: true,
       })
       toast({
         title: 'Archive deleted',
@@ -166,9 +163,8 @@ export const useDeleteSize = () => {
     mutationFn: deleteSize,
 
     onSuccess: async (data) => {
-      await queryClient.invalidateQueries({
+      await queryClient.refetchQueries({
         queryKey: ['products'],
-        exact: true,
       })
       toast({
         title: 'Size deleted',
@@ -197,9 +193,8 @@ export const useUpdateProduct = () => {
     mutationKey: ['update-product'],
     mutationFn: updateProduct,
     onSuccess: async (data) => {
-      await queryClient.invalidateQueries({
+      await queryClient.refetchQueries({
         queryKey: ['products'],
-        exact: true,
       })
       toast({
         title: 'Product updated',

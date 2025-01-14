@@ -1,28 +1,36 @@
-// middleware.ts
-import { NextResponse, NextRequest } from 'next/server'
+import type { NextRequest } from 'next/server'
+import { NextResponse } from 'next/server'
+import { verifyToken } from './modules/login/services/api'
 
-export function middleware(request: NextRequest) {
-  const url = request.url
+export async function middleware(request: NextRequest) {
+  const baseUrl = request.nextUrl.origin
+  const path = request.nextUrl.pathname
 
-  // Verifica si el usuario está autenticado
   const isAuthenticated = checkAuthentication(request)
 
-  // Si no está autenticado, redirige a /login, incluso si está en la raíz '/'
-  if (!isAuthenticated) {
-    console.log('No autenticado, redirigiendo a /login')
-    return NextResponse.redirect(new URL('/login', url)) // Redirige directamente a /login
-  }
+  if (!isAuthenticated) return NextResponse.redirect(new URL('/login', baseUrl))
 
-  return NextResponse.next() // Si está autenticado, continúa con la solicitud
+  if (path === '/') {
+    const token = request.cookies.get('auth')
+    if (token) {
+      try {
+        const data = await verifyToken(token.value)
+        if (data.statusCode === 200)
+          return NextResponse.redirect(new URL('/dashboard', baseUrl))
+      } catch (error) {
+        console.log('Error in middleware with checking token', error)
+        return NextResponse.redirect(new URL('/login', baseUrl))
+      }
+    }
+  }
+  return NextResponse.next()
 }
 
-// Función para verificar si el usuario está autenticado
 function checkAuthentication(request: NextRequest): boolean {
-  // Aquí implementas tu lógica de autenticación
-  const token = request.cookies.get('auth_token') // Por ejemplo, un token en las cookies
-  return Boolean(token) // Si el token existe, consideramos que está autenticado
+  const token = request.cookies.get('auth')
+  return Boolean(token)
 }
 
 export const config = {
-  matcher: ['/', '/admin/:path*'], // Aplica a la raíz y cualquier ruta dentro de /admin
+  matcher: ['/', '/admin/:path*'],
 }

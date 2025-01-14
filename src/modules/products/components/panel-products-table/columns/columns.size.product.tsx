@@ -51,9 +51,9 @@ const ColumnsSizeProduct = (data: FindAllProducts) => {
 
             {size.length > 0 ? (
               <div className="grid px-3 py-4 grid-cols-3 grid-rows-2 gap-2">
-                {size.map((sizeAvaible) => (
+                {size.map((sizeAvaible, index) => (
                   <Tooltip
-                    key={`size-${sizeAvaible}`}
+                    key={`size-${sizeAvaible}-${index}`}
                     closeDelay={0}
                     content={`Click for delete size ${sizeAvaible} `}
                     delay={0}
