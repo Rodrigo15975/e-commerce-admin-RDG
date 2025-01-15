@@ -4,17 +4,25 @@ import { PathServices } from '@/pathServices/pathServices'
 export const auth = async (data: Login) =>
   await useMethods.POST<HttpResponse & Cookies, Login>(
     `${PathServices.URL}${PathServices.AUTH}`,
-    data
+    data,
+    {
+      withCredentials: true,
+    }
   )
 
 export const verifyToken = async (token: string | undefined) => {
   try {
     const data = await useMethods.GET<VerifyToken>(
-      `${PathServices.VERIFY_TOKEN}/${token}`
+      `${PathServices.VERIFY_TOKEN}/${token}`,
+      {
+        withCredentials: true,
+      }
     )
 
     return data
   } catch (error) {
+    console.error(error)
+
     return { message: null, statusCode: null, success: false, error }
   }
 }
@@ -24,4 +32,6 @@ export const logout = async () =>
     auth: string
     statusCode: number
     success: boolean
-  }>(PathServices.LOGOUT)
+  }>(PathServices.LOGOUT, {
+    withCredentials: true,
+  })
