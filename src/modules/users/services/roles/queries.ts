@@ -14,4 +14,6 @@ export const useGetAllRoles = () =>
   })
 
 const getAllRoles = async () =>
-  await useMethods.GET<Roles[]>(`${PathServices.URL}${PathServices.ROLE}`)
+  await useMethods.GET<Roles[]>(`${PathServices.URL}${PathServices.ROLE}`, {
+    withCredentials: true,
+  })
