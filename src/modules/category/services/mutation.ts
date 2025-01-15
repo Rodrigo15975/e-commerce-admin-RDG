@@ -17,43 +17,43 @@ export const useCreateCategorie = () => {
     // gcTime: 0,
     mutationKey: ['createCategorie'],
     mutationFn: createCategorie,
-    async onMutate(newCategorie) {
-      await queryClient.cancelQueries({
-        queryKey: ['categories'],
-      })
-      const previesCategories = queryClient.getQueryData<CreateCategorie[]>([
-        'categories',
-      ])
-      queryClient.setQueryData<CreateCategorie[]>(['categories'], (oldData) =>
-        oldData
-          ? [...(oldData || []), { ...newCategorie, id: Date.now() }]
-          : oldData
-      )
+    // async onMutate(newCategorie) {
+    //   await queryClient.cancelQueries({
+    //     queryKey: ['categories'],
+    //   })
+    //   const previesCategories = queryClient.getQueryData<CreateCategorie[]>([
+    //     'categories',
+    //   ])
+    //   queryClient.setQueryData<CreateCategorie[]>(['categories'], (oldData) =>
+    //     oldData
+    //       ? [...(oldData || []), { ...newCategorie, id: Date.now() }]
+    //       : oldData
+    //   )
 
-      return {
-        previesCategories,
-      }
-    },
-    onError(error, _, context) {
-      queryClient.setQueryData<CreateCategorie[]>(
-        ['categories'],
-        context?.previesCategories
-      )
-      if (error instanceof AxiosError) {
-        toast({
-          title: `${error.response?.data.message}`,
-          'aria-activedescendant': error.message,
-          className: 'bg-gradient-to-t from-orange-100 to-orange-100',
-        })
-      }
-    },
-    async onSettled() {
-      await queryClient.invalidateQueries({
-        queryKey: ['categories'],
+    //   return {
+    //     previesCategories,
+    //   }
+    // },
+    onError(error) {
+      console.error(error)
+
+      // queryClient.setQueryData<CreateCategorie[]>(
+      //   ['categories'],
+      //   context?.previesCategories
+      // )
+      toast({
+        title: 'Error for create categorie',
+        'aria-activedescendant': 'Error for create categorie',
+        className: 'bg-gradient-to-t from-orange-100 to-orange-100',
       })
     },
+    // async onSettled() {
+    //   await queryClient.invalidateQueries({
+    //     queryKey: ['categories'],
+    //   })
+    // },
     async onSuccess(response) {
-      await queryClient.invalidateQueries({
+      await queryClient.refetchQueries({
         queryKey: ['categories'],
       })
       toast({

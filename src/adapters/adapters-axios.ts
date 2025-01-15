@@ -6,7 +6,7 @@ export class MethodsAxios implements MethodsAxiosInterface {
     // add BASE-URL
     this.axiosAdapter = axios.create({
       baseURL: urlBase,
-      withCredentials: true,
+      // withCredentials: true,
       // problema es el withCredentials
     })
   }
