@@ -8,7 +8,7 @@ import dayjs from 'dayjs'
 export const convertToInputDateFormat = (
   date: string | Date | null | undefined
 ): string => {
-  if (!date) return '' // Manejo de nulos o valores indefinidos
+  if (!date) return '' 
   const validDate = dayjs(date)
   return validDate.isValid() ? validDate.format('YYYY-MM-DD') : ''
 }

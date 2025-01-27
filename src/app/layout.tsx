@@ -10,6 +10,7 @@ import 'primereact/resources/themes/soho-light/theme.css'
 import './globals.css'
 import { Toaster } from '@/components/ui/toaster'
 import { ConfirmPopup } from 'primereact/confirmpopup'
+
 export const metadata: Metadata = {
   title: 'RDG Admin',
   description: 'ADMIN',

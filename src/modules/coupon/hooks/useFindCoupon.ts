@@ -15,7 +15,7 @@ export const useOneFindCoupon = (id: number | undefined) => {
       isNew,
       isGlobal,
       espiryDate,
-      product: products?.id,
+      product: products?.product,
     }
   }
   return undefined

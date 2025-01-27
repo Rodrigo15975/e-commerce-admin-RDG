@@ -7,13 +7,6 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
-import { DatePicker, Select } from 'antd'
-import { Edit2 } from 'lucide-react'
-import { Button } from 'primereact/button'
-import { useForm } from 'react-hook-form'
-import { useOneFindCoupon } from '../../hooks/useFindCoupon'
-// import { zodResolver } from '@hookform/resolvers/zod'
-
 import { useGetAllProducts } from '@/modules/create-products/services/queries'
 import {
   Button as ButtonNextUI,
@@ -24,13 +17,18 @@ import {
   ModalHeader,
   useDisclosure,
 } from '@nextui-org/react'
+import { DatePicker, Select } from 'antd'
 import dayjs from 'dayjs'
+import { Edit2 } from 'lucide-react'
+import { Button } from 'primereact/button'
 import {
   InputNumber,
   InputNumberValueChangeEvent,
 } from 'primereact/inputnumber'
 import { SelectButton, SelectButtonChangeEvent } from 'primereact/selectbutton'
 import { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
+import { useOneFindCoupon } from '../../hooks/useFindCoupon'
 import { useUpdateCoupon } from '../../services/mutation'
 
 const FormUpdateCoupon = (data: FindAllCoupons) => {
@@ -42,23 +40,23 @@ const FormUpdateCoupon = (data: FindAllCoupons) => {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure()
   const initialValuesUpdate = useOneFindCoupon(id)
   const form = useForm<UpdateCoupon>({
-    defaultValues: {
-      ...initialValuesUpdate,
-    },
+    defaultValues: initialValuesUpdate,
   })
 
   const onSubmit = (data: UpdateCoupon) => {
     const { isGlobal } = data
     if (isGlobal) data.product = null
     console.log(data)
-    // return
-    // const formattedDate = dayjs(data.espiryDate).format('YYYY-MM-DD')
     mutateUpdate(data, {
       onSuccess: () => {
         onClose()
       },
     })
   }
+  console.log({
+    initialValuesUpdate,
+    getAllProducts,
+  })
 
   useEffect(() => {
     if (isOpen) form.reset(initialValuesUpdate)
@@ -102,13 +100,13 @@ const FormUpdateCoupon = (data: FindAllCoupons) => {
                   onSubmit={form.handleSubmit(onSubmit)}
                   className="space-y-4"
                 >
+                  <FormLabel className="text-primary/60">Product</FormLabel>
                   {!form.getValues().isGlobal && (
                     <FormField
                       control={form.control}
                       name="product"
                       render={({ field }) => (
                         <Select
-                          defaultValue={field.value}
                           className="w-full h-[2.5rem]  font-poppins"
                           popupClassName="p-3 font-poppins"
                           value={field.value}
@@ -119,6 +117,7 @@ const FormUpdateCoupon = (data: FindAllCoupons) => {
                             value: product.id,
                             label: product.product,
                           }))}
+                          // options={getAllProducts ?? []}
                         />
                       )}
                     />

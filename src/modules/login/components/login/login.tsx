@@ -143,7 +143,9 @@ const Login = () => {
                 </div>
                 <Button
                   loading={isPending}
-                  loadingIcon={<AiOutlineLoading3Quarters />}
+                  loadingIcon={
+                    <AiOutlineLoading3Quarters className="animate-spin" />
+                  }
                   type="submit"
                   className="w-full bg-blue-600 hover:bg-blue-700"
                 >

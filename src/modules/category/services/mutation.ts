@@ -13,45 +13,30 @@ export const useCreateCategorie = () => {
   const { toast } = useToast()
   const queryClient = useQueryClient()
   return useMutation({
-    // retry: 1,
-    // gcTime: 0,
     mutationKey: ['createCategorie'],
     mutationFn: createCategorie,
-    // async onMutate(newCategorie) {
-    //   await queryClient.cancelQueries({
-    //     queryKey: ['categories'],
-    //   })
-    //   const previesCategories = queryClient.getQueryData<CreateCategorie[]>([
-    //     'categories',
-    //   ])
-    //   queryClient.setQueryData<CreateCategorie[]>(['categories'], (oldData) =>
-    //     oldData
-    //       ? [...(oldData || []), { ...newCategorie, id: Date.now() }]
-    //       : oldData
-    //   )
 
-    //   return {
-    //     previesCategories,
-    //   }
-    // },
-    onError(error) {
+    onError(error: AxiosError) {
       console.error(error)
-
-      // queryClient.setQueryData<CreateCategorie[]>(
-      //   ['categories'],
-      //   context?.previesCategories
-      // )
+      if (
+        error.response?.data &&
+        typeof error.response.data === 'object' &&
+        'message' in error.response.data
+      ) {
+        toast({
+          title: `${error.response?.data.message}`,
+          'aria-activedescendant': 'Error for create categorie',
+          className: 'bg-gradient-to-t from-orange-100 to-orange-100',
+        })
+        return
+      }
       toast({
         title: 'Error for create categorie',
         'aria-activedescendant': 'Error for create categorie',
         className: 'bg-gradient-to-t from-orange-100 to-orange-100',
       })
     },
-    // async onSettled() {
-    //   await queryClient.invalidateQueries({
-    //     queryKey: ['categories'],
-    //   })
-    // },
+
     async onSuccess(response) {
       await queryClient.refetchQueries({
         queryKey: ['categories'],
