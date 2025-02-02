@@ -1,9 +1,9 @@
+import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
@@ -16,11 +16,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
-import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { convertedDayMonthYear } from '@/utils/formatDateIso8601'
+import { Calendar, Package } from 'lucide-react'
 import { Image } from 'primereact/image'
-import { Package, Calendar } from 'lucide-react'
 import { Tag } from 'primereact/tag'
 
 type Props = {

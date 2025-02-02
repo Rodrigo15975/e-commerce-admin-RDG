@@ -1,14 +1,11 @@
 'use client'
 import TypographyTitle from '@/components/common/typographyTitle/typographyTitle'
-import PanelOrdersView from '../components/panel-orders-view'
-import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 import { IoArrowBack } from 'react-icons/io5'
-import { useGetAllClients } from '@/modules/orders/services/queries'
+import PanelOrdersView from '../components/panel-orders-view'
 
 const PageOrdersView = () => {
-  const { data: clients } = useGetAllClients()
-
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="bg-white p-4 ">
