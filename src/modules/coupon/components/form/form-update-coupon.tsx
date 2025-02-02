@@ -46,17 +46,12 @@ const FormUpdateCoupon = (data: FindAllCoupons) => {
   const onSubmit = (data: UpdateCoupon) => {
     const { isGlobal } = data
     if (isGlobal) data.product = null
-    console.log(data)
     mutateUpdate(data, {
       onSuccess: () => {
         onClose()
       },
     })
   }
-  console.log({
-    initialValuesUpdate,
-    getAllProducts,
-  })
 
   useEffect(() => {
     if (isOpen) form.reset(initialValuesUpdate)
