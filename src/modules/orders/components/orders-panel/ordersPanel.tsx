@@ -1,48 +1,26 @@
 'use client'
 import Panel from '@/components/common/Container/Panel'
 import TypographyTitle from '@/components/common/typographyTitle/typographyTitle'
-import React, { useState } from 'react'
-import { useGetAllTask } from '../../services/queries'
-import { useCreateTask } from '../../services/mutation'
-import { Input } from '@/components/ui/input'
-import { Button } from '@nextui-org/react'
+import OrdersTable from '../table/orders-table'
+import { Button } from '@/components/ui/button'
+import { ClipboardList } from 'lucide-react'
+import Link from 'next/link'
 
 const OrdersPanel = () => {
-  const { data = [] } = useGetAllTask()
-  const { mutate, isPending } = useCreateTask()
-  const [value, setValue] = useState<string>('')
-  const createTask = () => {
-    if (!value) return
-    mutate(value, {
-      onSuccess: () => {
-        setValue('')
-      },
-    })
-  }
-
   return (
     <Panel>
-      <div>
+      <div className="flex justify-between max-sm:flex-wrap gap-3">
         <TypographyTitle title="Orders" />
+        <div className="flex gap-2 max-sm:w-full max-sm:justify-between">
+          <Link href={'/orders/view-orders'}>
+            <Button className="space-x-2 bg-white" variant={'outline'}>
+              View all orders <ClipboardList />{' '}
+            </Button>
+          </Link>
+        </div>
       </div>
-      <div>
-        <h1> Tasks</h1>
-        <hr />
-        {data.map((task) => (
-          <div key={task.id}>
-            <h1
-              className={` ${
-                isPending && 'line-through text-green-300 font-semibold'
-              } `}
-            >
-              {task.title}
-            </h1>
-          </div>
-        ))}
-        <Input value={value} onChange={(e) => setValue(e.target.value)} />
-        <Button isLoading={isPending} disabled={isPending} onPress={createTask}>
-          Creating
-        </Button>
+      <div className="rounded bg-white border mt-16 w-full">
+        <OrdersTable />
       </div>
     </Panel>
   )

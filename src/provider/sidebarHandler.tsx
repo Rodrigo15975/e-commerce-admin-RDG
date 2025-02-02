@@ -8,12 +8,12 @@ export default function SidebarHandler({
   children?: React.ReactNode
 }) {
   const pathname = usePathname()
-
-  const isCreateProducts = pathname.startsWith('/create-products')
+  const pathsExcludes = ['/create-products', '/orders/view-orders']
+  const isExcluded = pathsExcludes.some((path) => pathname.startsWith(path))
 
   return (
     <>
-      {!isCreateProducts && <Sidebar />}
+      {!isExcluded && <Sidebar />}
       {children}
     </>
   )

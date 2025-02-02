@@ -13,4 +13,5 @@ export const PathServices = {
   PRODUCTS: '/products',
   FILES: '/files',
   COUPON: '/coupon',
+  CLIENTS: '/clients',
 } as const

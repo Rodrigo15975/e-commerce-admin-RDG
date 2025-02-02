@@ -1,18 +1,13 @@
-import { useMethods } from '@/adapters/methods'
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
+import { getAllClients } from './api'
 
-export type GetAllTask = {
-  id: string
-  title: string
-}
-
-export const useGetAllTask = () =>
+export const useGetAllClients = () =>
   useQuery({
-    queryKey: ['tasks'],
-    queryFn: async () => await useMethods.GET<GetAllTask[]>('/task'),
-    staleTime: 600000, // 10 minutos
-    gcTime: 1200000, // 20 minutos
-    retry: 3,
-    retryDelay: 2000,
+    queryKey: ['clients'],
+    queryFn: getAllClients,
+    staleTime: 1200000,
+    gcTime: 1200000,
+    retry: 5,
+    retryDelay: 10000,
     placeholderData: keepPreviousData,
   })
