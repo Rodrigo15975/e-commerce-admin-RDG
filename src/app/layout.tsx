@@ -18,14 +18,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <body>
         <NextTopLoader
-          color="#000009"
+          color="#000002"
           initialPosition={0.08}
           crawlSpeed={200}
           height={5}
