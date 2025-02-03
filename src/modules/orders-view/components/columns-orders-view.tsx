@@ -6,7 +6,11 @@ const ColumnsOrdersViewTable = () => {
   const products = (client: GetAllClients) => {
     return (
       <>
-        <OrdersViewProducts data={client} />
+        {client.orders.length === 0 ? (
+          'No products'
+        ) : (
+          <OrdersViewProducts data={client} />
+        )}
       </>
     )
   }

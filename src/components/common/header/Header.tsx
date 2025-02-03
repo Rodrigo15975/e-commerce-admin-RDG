@@ -10,7 +10,6 @@ import { SyntheticEvent, useState } from 'react'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { IoExitOutline } from 'react-icons/io5'
 import { LuFolderSearch } from 'react-icons/lu'
-import InputSearchGlobal from '../input-search-global/inputSearchGlobal'
 import LinksItemsSidebar from '../Sidebar/linksItemsSidebar'
 import ButtonLogout from './buttonLogout'
 
@@ -60,12 +59,7 @@ const Header: React.FC = () => {
         </SidebarMobile>
       </div>
 
-      <div className="lg:pl-6  pl-4 relative flex-[0_1_20rem] py-3">
-        <LuFolderSearch className="absolute right-2 top-5 text-xl " />
-        <InputSearchGlobal />
-      </div>
-
-      <div className="flex lg:pr-6 py-3 pr-4 items-center flex-col gap-2">
+      <div className="flex lg:pr-6 w-full py-3 pr-4 items-center justify-end gap-2">
         <Avatar>
           <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
           <AvatarFallback>CN</AvatarFallback>

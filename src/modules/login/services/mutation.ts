@@ -19,13 +19,13 @@ export const useAuth = () => {
       }
     },
     onError(error: AxiosError<{ message: string }>) {
-      console.error(error)
       if (error.response?.data.message) {
         const { message } = error.response.data
         toast({
           title: message,
           className: 'bg-gradient-to-t from-orange-200 to-orange-200',
         })
+        return
       }
       toast({
         title: 'Error in login',

@@ -5,7 +5,7 @@ import { useGetOrderByIdClient } from '../hooks/useGetOrdersByIdClient'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { IoArrowBack } from 'react-icons/io5'
-import PanelOrdersViewId from './PanelOrdersViewId'
+import PanelOrdersViewId from './panel/PanelOrdersViewId'
 
 const OrdersIdPanel = ({ id }: { id: string }) => {
   const ordersClient = useGetOrderByIdClient(id)

@@ -16,7 +16,6 @@ import {
 } from '@/components/ui/input-otp'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Image from 'next/image'
-import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { useAuth } from '../../services/mutation'
@@ -134,12 +133,6 @@ const Login = () => {
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2"></div>
-                  <Link
-                    href="/forgot-password"
-                    className="text-sm text-blue-600 hover:underline"
-                  >
-                    Forgot password?
-                  </Link>
                 </div>
                 <Button
                   loading={isPending}

@@ -120,9 +120,6 @@ const OrdersViewProducts = ({ data }: Props) => {
             </Card>
           ))}
         </div>
-        <DialogFooter>
-          <Button type="submit">Save changes</Button>
-        </DialogFooter>
       </DialogContent>
     </Dialog>
   )

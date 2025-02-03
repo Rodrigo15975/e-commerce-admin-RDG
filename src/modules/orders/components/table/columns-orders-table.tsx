@@ -7,16 +7,20 @@ const ColumnsOrdersTable = () => {
   const viewOrders = (client: GetAllClients) => {
     return (
       <>
-        <Link href={`/orders/view-orders/${client.id}`}>
-          <Button
-            tooltip="View orders"
-            tooltipOptions={{
-              position: 'top',
-            }}
-          >
-            <ClipboardList />
-          </Button>
-        </Link>
+        {client.orders.length === 0 ? (
+          'No orders'
+        ) : (
+          <Link href={`/orders/view-orders/${client.id}`}>
+            <Button
+              tooltip="View orders"
+              tooltipOptions={{
+                position: 'top',
+              }}
+            >
+              <ClipboardList />
+            </Button>
+          </Link>
+        )}
       </>
     )
   }

@@ -1,16 +1,6 @@
-import { Badge } from '@/components/ui/badge'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
-import { convertedDayMonthYear } from '@/utils/formatDateIso8601'
-import { Calendar, Package } from 'lucide-react'
-import { Image } from 'primereact/image'
-import { Tag } from 'primereact/tag'
+import Table from '@/components/Table/Table'
+import { Label } from '@/components/ui/label'
+import OrdersIdColumns from './orders-id-columns'
 
 type Props = {
   data: GetAllClients | undefined
@@ -18,87 +8,30 @@ type Props = {
 
 const OrdersIdViewProducts = ({ data }: Props) => {
   if (data) {
+    const { columns } = OrdersIdColumns()
     const { orders } = data
     const ordersItems = orders.flatMap((item) => item.OrdersItems)
 
+    const renderHeader = () => {
+      return (
+        <div className="flex items-start flex-col gap-4">
+          <Label className="text-primary font-medium text-pretty text-2xl">
+            Total Amount: <span>${orders[0].amount_total}.00</span>
+          </Label>
+        </div>
+      )
+    }
+    const header = renderHeader()
     return (
       <>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-4">
-          {ordersItems.map((items) => (
-            <Card
-              key={items.id}
-              className="overflow-hidden hover:shadow-lg transition-shadow"
-            >
-              <CardHeader className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <CardTitle className="text-lg font-medium">
-                    {items.product}
-                  </CardTitle>
-                  <Tag
-                    severity={items.status === 'paid' ? 'success' : 'secondary'}
-                  >
-                    {items.status}
-                  </Tag>
-                </div>
-                <CardDescription className="text-sm text-muted-foreground line-clamp-2">
-                  {items.description || 'No description available'}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4 flex flex-col justify-between">
-                <div className="grid grid-cols-2 gap-4 text-sm">
-                  <div className="space-y-2">
-                    <p className="text-muted-foreground">Size</p>
-                    <p className="font-medium">{items.size}</p>
-                  </div>
-                  <div className="space-y-2">
-                    <p className="text-muted-foreground">Quantity</p>
-                    <p className="font-medium">{items.quantity}</p>
-                  </div>
-                  <div className="space-y-2">
-                    <p className="text-muted-foreground">Price</p>
-                    <p className="font-medium">${items.price}</p>
-                  </div>
-                </div>
-
-                <Separator />
-
-                <div className="space-y-3">
-                  <p className="text-sm text-muted-foreground">
-                    Product Variants
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {items.ordersVariants.map((variant) => (
-                      <div key={variant.id}>
-                        <Image
-                          width="100px"
-                          src={variant.url}
-                          alt={items.product}
-                          // preview
-                          imageClassName="object-contain  "
-                          imageStyle={{ objectFit: 'cover' }}
-                          height="100px"
-                        />
-                        <span className="">
-                          <Badge variant="outline" className="text-xs">
-                            {variant.color}
-                          </Badge>
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="flex items-center text-sm text-muted-foreground">
-                    <Package className="w-4 h-4 mr-2" />
-                    <span>{items.status}</span>
-                  </div>
-                  <div className="flex items-center text-sm text-muted-foreground">
-                    <Calendar className="w-4 h-4 mr-2" />
-                    <span>{convertedDayMonthYear(items.createdAt)}</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        <Table
+          data={ordersItems}
+          className="font-poppins"
+          header={header}
+          headerClassName="bg-primary !text-slate-50 font-normal"
+          columnsConfig={columns}
+          globalFilter={''}
+        />
       </>
     )
   }
