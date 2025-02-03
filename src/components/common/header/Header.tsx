@@ -9,7 +9,6 @@ import { Sidebar as SidebarMobile } from 'primereact/sidebar'
 import { SyntheticEvent, useState } from 'react'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { IoExitOutline } from 'react-icons/io5'
-import { LuFolderSearch } from 'react-icons/lu'
 import LinksItemsSidebar from '../Sidebar/linksItemsSidebar'
 import ButtonLogout from './buttonLogout'
 
